@@ -61,6 +61,28 @@ def _build_cells(audience: str = "public") -> list:
         "5. **Meine Stimme hören** — meine geklonte Stimme, live im Notebook.\n"
         if is_prof else ""
     )
+    # The "≈ 90 %" headline is the AUTHOR's measured result — kept in the professor
+    # (ZIP) build, but dropped from the public build (a reader cloning their OWN voice
+    # gets their own number; there is no fixed percentage that holds for everyone).
+    key_metric_bullet = (
+        '3. **Die Schlüsselzahl** — wie genau „F5 bildet die Stimme zu ≈ 90 % ab" berechnet wird.'
+        if is_prof else
+        "3. **Die Ähnlichkeits-Kennzahl** — wie gemessen wird, wie nah eine geklonte Stimme der echten kommt."
+    )
+    dia2_title = (
+        "Ähnlichkeit trennt die Engines (F5 ≈ 90 %, GPT-SoVITS ≈ 53 %)"
+        if is_prof else
+        "Ähnlichkeit trennt die Engines (Sprecher-Treue, % der Obergrenze)"
+    )
+    ceiling_caveat = (
+        '**Obergrenze ist ein optimistisches Same-Session-Paar** (zwei Hälften einer Aufnahme), also lies\n'
+        '  „90 % der Obergrenze" als *relative* Position zwischen Engines, nicht als „90 % nicht\n'
+        '  unterscheidbar von einem Menschen".'
+        if is_prof else
+        '**Obergrenze ist ein optimistisches Same-Session-Paar** (zwei Hälften einer Aufnahme), also lies\n'
+        '  einen Wert wie „X % der Obergrenze" als *relative* Position zwischen Engines, nicht als „X %\n'
+        '  nicht unterscheidbar von einem Menschen".'
+    )
     md(rf"""
 # Voice Cloning — *deine* Stimme klonen und *messen*, ob es funktioniert
 
@@ -76,7 +98,7 @@ Es führt dich durch:
 
 1. **Den Trainingsprozess** — wie aus einer Aufnahme ein Klon wird (Pipeline).
 2. **Die Ergebnisse** — die Rangliste, jede Zahl aus echtem Code neu hergeleitet, plus Diagramme.
-3. **Die Schlüsselzahl** — wie genau „F5 bildet die Stimme zu ≈ 90 % ab" berechnet wird.
+{key_metric_bullet}
 {hear_line}4. **Few-Shot — *deine* Stimme klonen** — ein kurzer Clip von dir, sofort geklont (kein Training).
 5. **Fine-Tuning — *deine* Stimme trainieren** — der komplette Weg von der Aufnahme zum eigenen Modell.
 
@@ -307,12 +329,12 @@ ax.barh(labels, pct, color=[ACCENT if f else MUTED for f in is_f5])
 ax.axvline(100, ls="--", color=FG, label="echte Stimme (Obergrenze)")
 ax.set_xlim(0, 112)
 ax.set_xlabel("Sprecherähnlichkeit, % der Echtstimmen-Obergrenze")
-ax.set_title("Ähnlichkeit trennt die Engines (F5 ≈ 90 %, GPT-SoVITS ≈ 53 %)")
+ax.set_title("__DIA2_TITLE__")
 for i, v in enumerate(pct):
     ax.text(v + 1, i, f"{v:.0f}%", color=FG, va="center", fontsize=9)
 ax.legend(facecolor=BG, edgecolor=MUTED, labelcolor=FG, fontsize=8)
 dark(ax, fig); fig.tight_layout(); plt.show()
-""")
+""".replace("__DIA2_TITLE__", dia2_title))
     code(r"""
 # Diagramm 3 — Fine-Tuning-Steigung: der Nutzen hängt komplett von der Engine ab.
 by = {(r["engine"], r["mode"]): r["pct_ceiling"] * 100 for r in res["rows"]}
@@ -356,7 +378,8 @@ falschen.*
     # ----------------------------------------------------------------------- #
     # 4 · Wie die 90 % entstehen                                               #
     # ----------------------------------------------------------------------- #
-    md(r"""
+    if is_prof:
+        md(r"""
 ## 4 · Wie die „≈ 90 %" entstehen (die Schlüsselzahl)
 
 Die wichtigste Zahl des Projekts: **F5 bildet die Stimme zu ≈ 90 % ab.** So wird sie berechnet —
@@ -376,7 +399,7 @@ gegenseitig kommen** — *nicht* 90 % einer perfekten 1,0. Die nächste Zelle ze
 Mess-Code (inkl. der Kosinus-Funktion selbst) und rechnet die Prozent aus den gespeicherten
 Zahlen nach:
 """)
-    code(r"""
+        code(r"""
 from voxclone.eval import similarity
 
 # the real measurement code (no paraphrase): cosine, the real-vs-real ceiling, the score
@@ -389,6 +412,33 @@ pct = f5_ft["similarity"] / res["ceiling"] * 100
 print(f'F5 (fine-getunt) Roh-Ähnlichkeit : {f5_ft["similarity"]:.4f}')
 print(f'Obergrenze (real↔real)           : {res["ceiling"]:.4f}')
 print(f'→ % der Obergrenze               : {pct:.1f}%   (auf der Folie als ≈ 90 %)')
+""")
+    else:
+        md(r"""
+## 4 · Wie Ähnlichkeit gemessen wird (und wie du *deine* misst)
+
+Damit „klingt wie die Person" zu einer *Zahl* wird, misst das Projekt die **Sprecher-Ähnlichkeit** —
+und das funktioniert für **jede** Stimme, auch deine:
+
+1. **Stimme → Vektor.** ECAPA-TDNN (`speechbrain/spkrec-ecapa-voxceleb`) verwandelt jeden Clip in
+   einen „Stimm-Fingerabdruck" — einen Vektor, der kodiert *wer* spricht, nicht *was*.
+2. **Ähnlichkeit = Kosinus.** Kosinus-Ähnlichkeit zwischen dem Fingerabdruck des Klons und dem
+   Mittelwert (Centroid) der echten Clips der Person.
+3. **Die ehrliche Obergrenze.** Selbst zwei echte Aufnahmen derselben Person erreichen keine 1,0
+   (andere Sätze, Betonung, Mikro). Der mittlere paarweise Kosinus echter Clips ist die Obergrenze —
+   die ehrlichen „100 %". Ähnlichkeit liest man **relativ zu dieser Obergrenze**.
+
+Wie nah ein Klon kommt, **hängt von Stimme und Aufnahme ab — es gibt keine feste Zahl, die für alle
+gilt.** Die nächste Zelle zeigt den echten Mess-Code; um **deinen eigenen** Klon zu bewerten, nutze
+die Eval-Pipeline (`voxclone-eval`, siehe Fine-Tuning-Abschnitt).
+""")
+        code(r"""
+from voxclone.eval import similarity
+
+# the real measurement code (no paraphrase): cosine + the real-vs-real ceiling
+print(inspect.getsource(similarity.cosine))
+print(inspect.getsource(similarity.reference_ceiling))
+print(inspect.getsource(similarity.similarity_score))
 """)
 
     # ----------------------------------------------------------------------- #
@@ -602,9 +652,7 @@ Die Ergebnisse sind **richtungsweisend, nicht endgültig** — bewusst transpare
 
 - **N = 6, keine Konfidenzintervalle.** Score-Abstände unter ~0,02 sind Gleichstände
   (F5 fine-getunt vs zero-shot: +0,0053 — ein Gleichstand; *nicht* behaupten, Fine-Tuning helfe F5).
-- **Obergrenze ist ein optimistisches Same-Session-Paar** (zwei Hälften einer Aufnahme), also lies
-  „90 % der Obergrenze" als *relative* Position zwischen Engines, nicht als „90 % nicht
-  unterscheidbar von einem Menschen".
+- {caveat}
 - **Same-Session-Bewertung** — Held-out-Clips stammen aus derselben Aufnahmesession wie das Training;
   gemessen wird In-Session-Treue, nicht Generalisierung auf neuen Tag / Mikro / Raum.
 - **UTMOS ist gesättigt** — alle sechs Klone liegen über dem echten UTMOS (3,295); die 0,50-
@@ -614,7 +662,7 @@ Die Ergebnisse sind **richtungsweisend, nicht endgültig** — bewusst transpare
 **Was jede Einschränkung übersteht:** F5 führt in beiden Modi, und **F5 zero-shot schlägt XTTS
 fine-getunt** mit großem Abstand — die richtige Engine zu wählen zählt mehr als das Fine-Tuning der
 schwächeren. Voller Bericht: [`docs/finetune-vs-zeroshot-report.md`](../docs/finetune-vs-zeroshot-report.md).
-""".format(n=8 if is_prof else 7))
+""".format(n=8 if is_prof else 7, caveat=ceiling_caveat))
 
     # ----------------------------------------------------------------------- #
     # Troubleshooting + Quellen                                               #

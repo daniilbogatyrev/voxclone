@@ -42,12 +42,31 @@ def test_documents_results_with_real_scoring_code(audience):
 
 
 @pytest.mark.parametrize("audience", B.AUDIENCES)
-def test_explains_the_ninety_percent(audience):
+def test_explains_the_similarity_method(audience):
     src = _src(audience)
     assert "voxclone.eval import similarity" in src
-    assert "reference_ceiling" in src           # the ceiling derivation
-    assert 'res["ceiling"]' in src              # % computed from stored numbers
-    assert "% der Obergrenze" in src
+    assert "reference_ceiling" in src           # the real-vs-real ceiling derivation
+    assert 'res["ceiling"]' in src              # ceiling used in the leaderboard re-derivation
+
+
+def test_professor_keeps_the_ninety_percent():
+    # The author's measured headline number stays in the ZIP build (it's HIS voice).
+    src = _src("professor")
+    assert "≈ 90" in src
+    assert "90{,}1" in src                       # the 90.1 % derivation (LaTeX form)
+    assert "Schlüsselzahl" in src
+
+
+def test_public_drops_the_fixed_percentage():
+    # A public reader clones their OWN voice — no fixed "= 90 %" result is promised.
+    src = _src("public")
+    assert "≈ 90" not in src
+    assert "90 %" not in src
+    assert "90{,}1" not in src
+    # ...but the measurement METHOD is still taught, framed as "measure your own".
+    assert "Wie Ähnlichkeit gemessen wird" in src
+    assert "keine feste Zahl" in src
+    assert "voxclone-eval" in src
 
 
 def test_public_clones_your_own_voice_without_author_audio():
