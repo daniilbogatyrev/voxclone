@@ -28,6 +28,21 @@ XTTS voll fine-getunt**. Die Lehre: *die richtige Engine zu wählen zählt mehr 
 Fine-Tuning der falschen.* Voller Bericht:
 [`docs/finetune-vs-zeroshot-report.md`](docs/finetune-vs-zeroshot-report.md).
 
+## Status & Ausblick
+
+Dies ist ein **laufendes Studienprojekt** — der aktuelle Stand (Engine-Vergleich, Few-Shot-
+und Fine-Tuning-Klon, Bewertung) ist abgeschlossen und reproduzierbar, aber das Projekt wächst
+weiter. Mögliche nächste Schritte, evtl. in einem weiteren Semester:
+
+- **Lip-Syncing** — die geklonte Stimme mit lippensynchronem Video koppeln (Audio → Mundbewegung).
+- **Weitere Sprachen** — über Englisch/Deutsch hinaus (z. B. Französisch, Spanisch), inkl.
+  cross-lingualer Bewertung.
+- **Größerer, mehrtägiger Hörtest** und ein menschliches Urteil zusätzlich zu den automatischen Metriken.
+
+Das sind **Ideen, keine Zusagen** — Richtung, nicht Fahrplan. Die Architektur (eine `voxclone`-
+Bibliothek, per-Engine-Adapter, ein gemeinsames Bewertungs-Frontend) ist bewusst so gebaut, dass
+sich solche Erweiterungen anbauen lassen.
+
 ## Was bewusst **nicht** im Repo ist
 
 Aus Datenschutz- und Einwilligungsgründen enthält dieses öffentliche Repo **keine Stimm-Audios
