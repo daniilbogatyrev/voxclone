@@ -1,0 +1,22 @@
+:root { color-scheme: dark; }
+body { font-family: system-ui, sans-serif; background: #11131a; color: #e6e8ef;
+       display: grid; place-items: center; min-height: 100vh; margin: 0; }
+main { width: min(640px, 92vw); display: flex; flex-direction: column; gap: 12px; padding: 28px; }
+h1 { font-weight: 650; letter-spacing: -0.02em; margin: 0; }
+h1 .sub { font-weight: 400; color: #9aa3b2; font-size: 0.55em; letter-spacing: 0; }
+.hint { margin: 0 0 6px; color: #9aa3b2; font-size: 0.9em; line-height: 1.45; }
+.hint b { color: #c3c8d4; font-weight: 600; }
+.row { display: flex; gap: 12px; }
+.row > label { flex: 1; display: flex; flex-direction: column; gap: 5px;
+       font-size: 0.8em; color: #9aa3b2; }
+textarea, select, button { font: inherit; padding: 10px 12px; border-radius: 10px;
+       border: 1px solid #2a2e3a; background: #181b24; color: inherit; }
+textarea { resize: vertical; }
+button { background: #4f7cff; border: none; cursor: pointer; font-weight: 600; }
+button:hover { background: #3d68ec; }
+button:disabled { opacity: 0.5; cursor: default; }
+button.secondary { background: #232735; }
+button.secondary:hover { background: #2c3142; }
+.row > button { flex: 1; }
+audio { width: 100%; }
+#status { min-height: 1.2em; color: #9aa3b2; font-size: 0.9em; }

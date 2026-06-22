@@ -1,0 +1,12 @@
+model: gptsovits
+train:
+  version: v2Pro
+  epochs_sovits: 8
+  epochs_gpt: 15
+  batch_size: 4
+eval:
+  held_out_sentences: 20
+  weights:
+    similarity: 0.5
+    naturalness: 0.3
+    wer: 0.2

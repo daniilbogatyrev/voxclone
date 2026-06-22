@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>voxclone — Daniil voice studio</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main>
+    <h1>voxclone <span class="sub">— Daniil voice clone studio</span></h1>
+    <p class="hint">Pick a language and a voice, type a sentence, and hear it in Daniil's
+      cloned voice. The <b>first</b> clip for a voice warms the GPU (~30–90 s); after that
+      it's quick. Switching voice reloads once.</p>
+    <div class="row">
+      <label>Language
+        <select id="language"></select>
+      </label>
+      <label>Voice
+        <select id="voice"></select>
+      </label>
+    </div>
+    <textarea id="text" rows="3" placeholder="Type a sentence to clone…">Hi, this is Daniil's cloned voice, generated live in the browser.</textarea>
+    <div class="row">
+      <button id="go">Generate</button>
+      <button id="restart" class="secondary" title="Reload the current voice's worker">Restart voice</button>
+    </div>
+    <audio id="player" controls></audio>
+    <p id="status"></p>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

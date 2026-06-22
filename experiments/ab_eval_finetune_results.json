@@ -1,0 +1,81 @@
+{
+  "date": "2026-06-01",
+  "kind": "finetuned_vs_zeroshot_AB",
+  "n_sentences": 6,
+  "ceiling": 0.8283930081192615,
+  "real_utmos_heldout": 3.2954084873199463,
+  "weights": {
+    "similarity": 0.3,
+    "naturalness": 0.5,
+    "wer": 0.2
+  },
+  "wer_dq_threshold": 0.2,
+  "rows": [
+    {
+      "key": "f5_finetuned",
+      "engine": "F5-TTS",
+      "mode": "fine-tuned",
+      "similarity": 0.7466045996987596,
+      "pct_ceiling": 0.9012685915756461,
+      "naturalness": 3.8780113458633423,
+      "utmos_std": 0.10844475890917386,
+      "wer": 0.008333333333333333,
+      "score": 0.8565150453923615
+    },
+    {
+      "key": "f5_tts",
+      "engine": "F5-TTS",
+      "mode": "zero-shot",
+      "similarity": 0.7356010728110532,
+      "pct_ceiling": 0.8879856126274194,
+      "naturalness": 3.8648151954015098,
+      "utmos_std": 0.09611718336472261,
+      "wer": 0.008333333333333333,
+      "score": 0.8512105366617101
+    },
+    {
+      "key": "xtts_finetuned",
+      "engine": "XTTS-v2",
+      "mode": "fine-tuned",
+      "similarity": 0.6341980526377439,
+      "pct_ceiling": 0.765576298232638,
+      "naturalness": 3.6370461781819663,
+      "utmos_std": 0.09852706738986819,
+      "wer": 0.0,
+      "score": 0.7933775072879881
+    },
+    {
+      "key": "xtts_v2",
+      "engine": "XTTS-v2",
+      "mode": "zero-shot",
+      "similarity": 0.5445452650838959,
+      "pct_ceiling": 0.6573513534598775,
+      "naturalness": 3.715883731842041,
+      "utmos_std": 0.13470813309968818,
+      "wer": 0.0,
+      "score": 0.7687937792221673
+    },
+    {
+      "key": "chatterbox",
+      "engine": "Chatterbox",
+      "mode": "zero-shot",
+      "similarity": 0.5556683178738678,
+      "pct_ceiling": 0.6707786188773213,
+      "naturalness": 3.610214273134867,
+      "utmos_std": 0.18101683792744425,
+      "wer": 0.008333333333333333,
+      "score": 0.7605883463100165
+    },
+    {
+      "key": "gptsovits_v2pro",
+      "engine": "GPT-SoVITS",
+      "mode": "zero-shot",
+      "similarity": 0.4403236348683149,
+      "pct_ceiling": 0.5315395356462529,
+      "naturalness": 3.629544258117676,
+      "utmos_std": 0.21930410039617496,
+      "wer": 0.008333333333333333,
+      "score": 0.7207496198389768
+    }
+  ]
+}

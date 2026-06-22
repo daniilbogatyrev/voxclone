@@ -1,0 +1,244 @@
+{
+  "date": "2026-05-27",
+  "kind": "zeroshot_cross_engine_AB",
+  "n_sentences": 6,
+  "sentences": [
+    "Hello \u2014 this is a quick zero-shot test of the cloned voice, reading a couple of natural English sentences aloud.",
+    "On Saturday we drove for three hours to reach the small village by the lake.",
+    "Could you tell me where the nearest train station is?",
+    "She carefully placed the old photograph back inside the wooden drawer.",
+    "The weather forecast says it will rain heavily tonight and clear up by morning.",
+    "I bought twelve apples, four oranges, and a loaf of fresh bread."
+  ],
+  "ceiling": 0.8283930081192615,
+  "real_utmos_heldout": 3.2954084873199463,
+  "weights": {
+    "similarity": 0.3,
+    "naturalness": 0.5,
+    "wer": 0.2
+  },
+  "wer_dq_threshold": 0.2,
+  "naturalness_model": "speechmos:utmos22_strong",
+  "asr_model": "whisperx:large-v3",
+  "held_out": [
+    "heldout_a.wav",
+    "heldout_b.wav"
+  ],
+  "summary": {
+    "gptsovits_v2pro": {
+      "similarity": 0.4403,
+      "naturalness": 3.6295,
+      "wer": 0.0083,
+      "score": 0.7207,
+      "sim_std": 0.0549,
+      "utmos_std": 0.2193,
+      "wer_std": 0.0186
+    },
+    "xtts_v2": {
+      "similarity": 0.5445,
+      "naturalness": 3.7159,
+      "wer": 0.0,
+      "score": 0.7688,
+      "sim_std": 0.0465,
+      "utmos_std": 0.1347,
+      "wer_std": 0.0
+    },
+    "f5_tts": {
+      "similarity": 0.7356,
+      "naturalness": 3.8648,
+      "wer": 0.0083,
+      "score": 0.8512,
+      "sim_std": 0.0408,
+      "utmos_std": 0.0961,
+      "wer_std": 0.0186
+    },
+    "chatterbox": {
+      "similarity": 0.5557,
+      "naturalness": 3.6102,
+      "wer": 0.0083,
+      "score": 0.7606,
+      "sim_std": 0.0142,
+      "utmos_std": 0.181,
+      "wer_std": 0.0186
+    }
+  },
+  "per_clip": {
+    "gptsovits_v2pro": [
+      {
+        "i": 1,
+        "sim": 0.5006,
+        "wer": 0.05,
+        "utmos": 3.191,
+        "hyp": "Hello, this is a quick zero shot test of the clone voice, reading a couple of natural English sentences aloud."
+      },
+      {
+        "i": 2,
+        "sim": 0.4179,
+        "wer": 0.0,
+        "utmos": 3.91,
+        "hyp": "On Saturday we drove for 3 hours to reach the small village by the lake."
+      },
+      {
+        "i": 3,
+        "sim": 0.3685,
+        "wer": 0.0,
+        "utmos": 3.732,
+        "hyp": "Could you tell me where the nearest train station is?"
+      },
+      {
+        "i": 4,
+        "sim": 0.5016,
+        "wer": 0.0,
+        "utmos": 3.704,
+        "hyp": "She carefully placed the old photograph back inside the wooden drawer."
+      },
+      {
+        "i": 5,
+        "sim": 0.4748,
+        "wer": 0.0,
+        "utmos": 3.597,
+        "hyp": "The weather forecast says it will rain heavily tonight and clear up by morning."
+      },
+      {
+        "i": 6,
+        "sim": 0.3784,
+        "wer": 0.0,
+        "utmos": 3.642,
+        "hyp": "I bought 12 apples, 4 oranges, and a loaf of fresh bread."
+      }
+    ],
+    "xtts_v2": [
+      {
+        "i": 1,
+        "sim": 0.5264,
+        "wer": 0.0,
+        "utmos": 3.6,
+        "hyp": "Hello. This is a quick zero-shot test of the cloned voice, reading a couple of natural English sentences aloud."
+      },
+      {
+        "i": 2,
+        "sim": 0.5566,
+        "wer": 0.0,
+        "utmos": 3.794,
+        "hyp": "On Saturday we drove for three hours to reach the small village by the lake."
+      },
+      {
+        "i": 3,
+        "sim": 0.5525,
+        "wer": 0.0,
+        "utmos": 3.931,
+        "hyp": "Could you tell me where the nearest train station is?"
+      },
+      {
+        "i": 4,
+        "sim": 0.6295,
+        "wer": 0.0,
+        "utmos": 3.681,
+        "hyp": "She carefully placed the old photograph back inside the wooden drawer."
+      },
+      {
+        "i": 5,
+        "sim": 0.528,
+        "wer": 0.0,
+        "utmos": 3.518,
+        "hyp": "The weather forecast says it will rain heavily tonight and clear up by morning."
+      },
+      {
+        "i": 6,
+        "sim": 0.4743,
+        "wer": 0.0,
+        "utmos": 3.771,
+        "hyp": "I bought twelve apples, four oranges, and a loaf of fresh bread."
+      }
+    ],
+    "f5_tts": [
+      {
+        "i": 1,
+        "sim": 0.7429,
+        "wer": 0.05,
+        "utmos": 3.892,
+        "hyp": "Hello, this is a quick zero shot test of the clone voice, reading a couple of natural English sentences aloud."
+      },
+      {
+        "i": 2,
+        "sim": 0.7583,
+        "wer": 0.0,
+        "utmos": 3.892,
+        "hyp": "On Saturday, we drove for three hours to reach the small village by the lake."
+      },
+      {
+        "i": 3,
+        "sim": 0.7098,
+        "wer": 0.0,
+        "utmos": 3.951,
+        "hyp": "Could you tell me where the nearest train station is?"
+      },
+      {
+        "i": 4,
+        "sim": 0.7906,
+        "wer": 0.0,
+        "utmos": 3.863,
+        "hyp": "she carefully placed the old photograph back inside the wooden drawer"
+      },
+      {
+        "i": 5,
+        "sim": 0.7505,
+        "wer": 0.0,
+        "utmos": 3.931,
+        "hyp": "The weather forecast says it will rain heavily tonight and clear up by morning."
+      },
+      {
+        "i": 6,
+        "sim": 0.6615,
+        "wer": 0.0,
+        "utmos": 3.66,
+        "hyp": "I bought 12 apples, 4 oranges, and a loaf of fresh bread."
+      }
+    ],
+    "chatterbox": [
+      {
+        "i": 1,
+        "sim": 0.5589,
+        "wer": 0.05,
+        "utmos": 3.912,
+        "hyp": "This is a quick zero-shot test of the cloned voice, reading a couple of natural English sentences aloud."
+      },
+      {
+        "i": 2,
+        "sim": 0.5548,
+        "wer": 0.0,
+        "utmos": 3.734,
+        "hyp": "On Saturday, we drove for three hours to reach the small village by the lake."
+      },
+      {
+        "i": 3,
+        "sim": 0.5697,
+        "wer": 0.0,
+        "utmos": 3.332,
+        "hyp": "Could you tell me where the nearest train station is?"
+      },
+      {
+        "i": 4,
+        "sim": 0.5567,
+        "wer": 0.0,
+        "utmos": 3.547,
+        "hyp": "She carefully placed the old photograph back inside the wooden drawer."
+      },
+      {
+        "i": 5,
+        "sim": 0.5675,
+        "wer": 0.0,
+        "utmos": 3.618,
+        "hyp": "The weather forecast says it will rain heavily tonight and clear up by morning."
+      },
+      {
+        "i": 6,
+        "sim": 0.5264,
+        "wer": 0.0,
+        "utmos": 3.519,
+        "hyp": "I bought 12 apples, 4 oranges and a loaf of fresh bread."
+      }
+    ]
+  },
+  "best": "f5_tts"
+}

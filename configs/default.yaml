@@ -1,0 +1,16 @@
+capture:
+  sample_rate: 48000
+  target_minutes: 50
+prep:
+  target_sample_rate: 48000
+  vad_min_duration_s: 3.0
+  vad_max_duration_s: 15.0
+  denoise_enabled: true
+  peak_dbfs: -1.0
+  whisper_model: "large-v3"
+  whisper_device: "cuda"
+  validation:
+    min_duration_s: 1.5
+    max_duration_s: 15.0
+    max_clipped_fraction: 0.005
+    min_transcript_confidence: 0.6

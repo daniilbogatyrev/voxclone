@@ -1,0 +1,49 @@
+{
+  "date": "2026-05-27",
+  "kind": "zeroshot_cross_engine_eval",
+  "shared_text": "Hello \u2014 this is a quick zero-shot test of the cloned voice, reading a couple of natural English sentences aloud.",
+  "ceiling": 0.8283930081192615,
+  "weights": {
+    "similarity": 0.3,
+    "naturalness": 0.5,
+    "wer": 0.2
+  },
+  "wer_dq_threshold": 0.2,
+  "held_out": [
+    "heldout_a.wav",
+    "heldout_b.wav"
+  ],
+  "naturalness_model": "speechmos:utmos22_strong",
+  "asr_model": "whisperx:large-v3",
+  "results": {
+    "gptsovits_v2pro": {
+      "similarity": 0.5055,
+      "naturalness": 3.5389,
+      "wer": 0.05,
+      "score": 0.7269,
+      "hyp": "Hello, this is a quick zero shot test of the clone voice, reading a couple of natural English sentences aloud."
+    },
+    "xtts_v2": {
+      "similarity": 0.557,
+      "naturalness": 3.6277,
+      "wer": 0.0,
+      "score": 0.7645,
+      "hyp": "Hello, this is a quick zero-shot test of the cloned voice, reading a couple of natural English sentences aloud."
+    },
+    "f5_tts": {
+      "similarity": 0.748,
+      "naturalness": 3.8964,
+      "wer": 0.1,
+      "score": 0.8405,
+      "hyp": "Hello, this is a quick zero, short test of the clone voice, reading a couple of natural English sentences aloud."
+    },
+    "chatterbox": {
+      "similarity": 0.6282,
+      "naturalness": 3.8659,
+      "wer": 0.0,
+      "score": 0.8141,
+      "hyp": "Hello. This is a quick zero-shot test of the cloned voice reading a couple of natural English sentences aloud."
+    }
+  },
+  "best": "f5_tts"
+}

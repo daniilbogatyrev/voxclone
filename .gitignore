@@ -1,0 +1,31 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+*.egg-info/
+
+# Private voice data + personal documents
+data/raw/
+data/processed/
+data/manifest.jsonl
+data/transcripts.csv
+data/*.pdf
+
+# Models / fine-tuned weights (large, private, shared out of band)
+runs/
+third_party/
+reports/
+votes.db
+
+# No voice audio in the repo (consent: clips stay local / out of band)
+experiments/**/*.wav
+experiments/**/*.m4a
+notebooks/gallery/
+notebooks/clone_outputs/
+
+# Starter-kit bundle (weights + reference, shared out of band)
+*.zip
+
+# Local-only material
+presentation/
+scripts/present.sh

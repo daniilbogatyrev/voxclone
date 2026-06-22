@@ -1,0 +1,5 @@
+train:
+  epochs: 1
+  learning_rate: 1.0e-5
+  batch_size_per_gpu: 3200
+  grad_accumulation_steps: 1
