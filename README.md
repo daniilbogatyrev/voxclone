@@ -14,7 +14,7 @@ Eine saubere `voxclone`-Bibliothek mit drei Oberflächen:
 - einer **CLI** für die Daten- und Trainings-Pipeline,
 - einer **FastAPI- + Vanilla-JS-Web-App** zum interaktiven Klonen,
 - **dem einen Notebook** [`notebooks/voice_cloning_study.ipynb`](notebooks/voice_cloning_study.ipynb),
-  das dich durch alles führt: Pipeline, Ergebnisse, die „≈ 90 %"-Zahl und das Klonen *deiner
+  das dich durch alles führt: Pipeline, Ergebnisse, die Ähnlichkeits­messung und das Klonen *deiner
   eigenen* Stimme.
 
 Darunter liegt ein forschungsnaher Mehr-Engine-Vergleich (XTTS-v2, F5-TTS, Chatterbox,
@@ -22,10 +22,15 @@ GPT-SoVITS), *zero-shot* und *fine-getunt*.
 
 ## Ergebnis in einem Satz
 
-**F5-TTS gewinnt** und bildet die Stimme zu **≈ 90 %** der ehrlichen real↔real-Obergrenze ab.
-Fine-Tuning hilft **XTTS** stark, **F5** ist schon gesättigt — und **F5 ohne Training schlägt
-XTTS voll fine-getunt**. Die Lehre: *die richtige Engine zu wählen zählt mehr als das
-Fine-Tuning der falschen.* Voller Bericht:
+**F5-TTS gewinnt** den Engine-Vergleich — es klingt der echten Stimme am ähnlichsten (gemessen
+als Sprecher-Ähnlichkeit relativ zu einer ehrlichen real↔real-Obergrenze). Fine-Tuning hilft
+**XTTS** stark, **F5** ist schon nahe an seiner Grenze — und **F5 ohne Training schlägt XTTS
+voll fine-getunt**. Die Lehre: *die richtige Engine zu wählen zählt mehr als das Fine-Tuning der
+falschen.*
+
+Die konkreten Messwerte hier stammen von **meiner** Stimme — wie nah es bei **deiner** Stimme
+kommt, hängt von der Aufnahme ab und **misst du selbst**: dieselbe Bewertungs-Pipeline berechnet
+die Scores für jede Stimme, die du klonst. Voller Bericht:
 [`docs/finetune-vs-zeroshot-report.md`](docs/finetune-vs-zeroshot-report.md).
 
 ## Status & Ausblick
@@ -75,8 +80,8 @@ Blackwell/sm_120 gepinnt). Ohne GPU laufen nur die GPU-freien Analyse-Teile.
 Kernel **`VoxClone (.venv)`**, cwd = Repo-Wurzel) und **Run All**. Es führt dich durch:
 
 1. **Den Trainingsprozess** — von der Aufnahme zum Klon (die Pipeline).
-2. **Die Ergebnisse** — die Rangliste, jede Zahl aus echtem Code neu hergeleitet, plus Diagramme.
-3. **Die Schlüsselzahl** — wie „≈ 90 %" berechnet wird (ECAPA-Ähnlichkeit / Obergrenze).
+2. **Die Ergebnisse** — die Engine-Rangliste mit Diagrammen, nachvollziehbar aus den Messwerten hergeleitet.
+3. **Die Ähnlichkeits-Kennzahl** — wie gemessen wird, wie nah die geklonte Stimme der echten kommt (ECAPA-Ähnlichkeit / Obergrenze).
 4. **Few-Shot** — *deine* Stimme aus einem kurzen Clip klonen (kein Training).
 5. **Fine-Tuning** — *deine* Stimme end-to-end trainieren (Aufnahme → prep → train → eval).
 
