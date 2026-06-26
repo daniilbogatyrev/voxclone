@@ -4,7 +4,7 @@
 
 Persönliches, **nicht-kommerzielles** Projekt: Es klont **eine einwilligende Stimme**
 (meine, mit Einwilligung für dieses Projekt aufgenommen) und vergleicht vier quelloffene
-TTS-Engines auf derselben Stimme — objektiv gescort, nicht nach Gefühl. Zugleich ist es eine
+TTS-Engines auf derselben Stimme — objektiv gescort. Zugleich ist es eine
 **Anleitung, mit der du deine eigene Stimme klonst** (Few-Shot und Fine-Tuning).
 
 ## Was es ist
@@ -44,7 +44,7 @@ weiter. Mögliche nächste Schritte, evtl. in einem weiteren Semester:
   cross-lingualer Bewertung.
 - **Größerer, mehrtägiger Hörtest** und ein menschliches Urteil zusätzlich zu den automatischen Metriken.
 
-Das sind **Ideen, keine Zusagen** — Richtung, nicht Fahrplan. Die Architektur (eine `voxclone`-
+Das sind **Ideen, keine Zusagen**. Die Architektur (eine `voxclone`-
 Bibliothek, per-Engine-Adapter, ein gemeinsames Bewertungs-Frontend) ist bewusst so gebaut, dass
 sich solche Erweiterungen anbauen lassen.
 
@@ -72,8 +72,7 @@ per-Engine-Conda-Envs, die Modelle und einen Referenzclip — eine frische Kopie
 ist **[`docs/SETUP.md`](docs/SETUP.md)**.
 
 **Hardware:** Die Generierung braucht eine **NVIDIA-CUDA-GPU** (Stack auf torch 2.11.0+cu128,
-Blackwell/sm_120 gepinnt). Ohne GPU laufen nur die GPU-freien Analyse-Teile.
-
+Blackwell/sm_120 gepinnt).
 ## Das eine Notebook
 
 [`notebooks/voice_cloning_study.ipynb`](notebooks/voice_cloning_study.ipynb) öffnen (VS Code,
@@ -84,10 +83,6 @@ Kernel **`VoxClone (.venv)`**, cwd = Repo-Wurzel) und **Run All**. Es führt dic
 3. **Die Ähnlichkeits-Kennzahl** — wie gemessen wird, wie nah die geklonte Stimme der echten kommt (ECAPA-Ähnlichkeit / Obergrenze).
 4. **Few-Shot** — *deine* Stimme aus einem kurzen Clip klonen (kein Training).
 5. **Fine-Tuning** — *deine* Stimme end-to-end trainieren (Aufnahme → prep → train → eval).
-
-Die Analyse-Abschnitte laufen **GPU-frei**; die Audio-Abschnitte brauchen das volle Setup und
-degradieren sonst freundlich. Du brauchst nie ein Terminal — das Notebook startet die
-Engine-Server selbst.
 
 ## Lese-Skript & Few-Shot-Satz
 
